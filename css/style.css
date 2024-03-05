@@ -1,0 +1,511 @@
+/* @import url(fonts.css); */
+
+:root {
+	--bg-color: #FFFBF7;
+	--nav-color: #F7ECE4;
+	--green: #83A466;
+	--beige: #C4B093;
+	--font-color: #333;
+	--pink: #FAD7CE;
+	--yellow: #FFF3D4;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Poppins, sans-serif;
+	outline: none;
+	border: none;
+	text-decoration: none;
+	text-transform: capitalize;
+	transition: .2s linear;
+}
+
+html {
+	font-size: 62.5%;
+	scroll-behavior: smooth;
+	scroll-padding-top: 6rem;
+	overflow-x: hidden;
+}
+
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: var(--bg-color);
+	padding: 2rem 9%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	z-index: 1000;
+	box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+}
+
+section {
+	padding: 2rem 9%;
+}
+
+footer {
+	padding: 2rem 9%;
+}
+
+.btn {
+	display: inline-block;
+	margin-top: 1rem;
+	border-radius: 5rem;
+	background: var(--font-color);
+	color: var(--bg-color);
+	padding: .9rem 3.5rem;
+	cursor: pointer;
+	font-size: 1.7rem;
+}
+
+.btn:hover {
+	background: var(--beige);
+}
+
+header .logo img{
+	width: 15%;
+}
+
+header .navbar a {
+	font-size: 2rem;
+	padding: 0 1.5rem;
+	color: #666;
+	font-family: Brandon Grotesque;
+	font-weight: bolder;
+}
+
+header .navbar a:hover {
+	color: var(--green);
+}
+
+header .icons a {
+	font-size: 2.5rem;
+	color: var(--font-color);
+	margin-left: 1.5rem;
+}
+
+header .icons a:hover {
+	color: var(--beige);
+}
+
+header #toggler {
+	display: none;
+}
+
+header .fa-bars {
+	font-size: 3rem;
+	color: var(--font-color);
+	border-radius: .5rem;
+	padding: .5rem 1.5rem;
+	cursor: pointer;
+	border: .1rem solid rgba(0, 0, 0, .3);
+	display: none;
+}
+
+.banner-container {
+	padding: 0;
+	padding-top: 10rem;
+	padding-bottom: 5rem;
+}
+
+.banner-container .banner {
+	display: flex;
+	align-items: center;
+	min-height: 100vh;
+	background: url(../img/decorations/grubi-1.webp) no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.line {
+	padding:0 .5rem;
+	background-color: rgba(131,164,102, .05);
+	width: 100%;
+}
+
+.line h3 {
+	font-size: 4.5rem;
+	color: var(--font-color);
+}
+
+.line span {
+	font-size: 2.5rem;
+	color: var(--green);
+	padding: 1rem 0;
+	line-height: 1.5;
+}
+
+.heading {
+	text-align: center;
+	font-size: 4rem;
+	color: var(--font-color);
+	padding: 1rem;
+	margin: 2rem 0;
+	background: rgba(131,164,102, .15);
+}
+
+.heading span {
+	color: var(--green);
+}
+
+.about .row {
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+	flex-wrap: wrap;
+	padding: 2rem 0 3rem;
+}
+
+.about .row .column-left {
+	background-color: var(--yellow);
+	padding: 2rem 4rem;
+	flex: 1 1 40rem;
+	width: 50%;
+}
+
+.about .row .column-left .info{
+	margin: 1rem 0;
+	background: var(--bg-color);
+	flex: 1 1 30rem;
+	padding: 2.5rem;
+	box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
+	border-radius: .5rem;
+	border: .1rem solid rgba(0, 0, 0, .1);
+	position: relative;
+	align-items: center;
+}
+
+.about .row h3 {
+	text-align: center;
+	margin-top: 2rem;
+	margin-bottom: 2.5rem;
+	font-size: 3rem;
+	color: var(--font-color);
+}
+
+.about .row span {
+	font-size: 3rem;
+	color: var(--green);
+}
+
+.about .row .column-right {
+	flex: 1 1 40rem;
+}
+
+.about .row p {
+	text-transform: none;
+	font-size: 1.5rem;
+	color: var(--font-color);
+	padding: 1rem 0 1.5rem;
+	line-height: 1.5;
+}
+
+.about .row .image {
+	position: relative;
+	text-align: center;
+	padding-top: 2rem;
+	overflow: hidden;
+}
+
+.about .row img {
+	width: 25%;
+}
+
+.frame-container {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin: auto 6rem;
+}
+
+.frame-slider {
+	width: 50%;
+	max-height: 50%;
+	margin: 3em auto;
+	overflow: hidden;
+	border: 6px solid;
+	border-color: var(--green);
+	position: relative;
+}
+
+.frame-slider ul {
+	display: flex;
+	padding: 0;
+	width: 500%;
+	height: 100%;
+	animation: slide 20s infinite alternate;
+}
+
+.frame-slider ul:hover {
+	animation-play-state: paused;
+}
+
+.frame-slider li {
+	list-style: none;
+	width: 100%;
+}
+
+.frame-slider img {
+	width: 100%;
+	vertical-align: top;
+}
+
+.products p {
+	text-transform: none;
+	font-size: 1.5rem;
+	color: #666;
+	padding: 0 0 1.5rem;
+	line-height: 1.5;
+	text-align: center;
+}
+
+.products .box-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5rem;
+}
+
+.products .box-container .box {
+	flex: 1 1 30rem;
+	box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
+	border-radius: .5rem;
+	border: .1rem solid rgba(0, 0, 0, .1);
+	position: relative;
+}
+
+.products .box-container .box .discount {
+	position: absolute;
+	border-radius: .5rem;
+	top: 1rem;
+	left: 1rem;
+	padding: .7rem 1rem;
+	color: var(--green);
+	background: rgba(131,164,102, .15);
+	z-index: 1;
+}
+
+.products .box-container .box .image {
+	position: relative;
+	text-align: center;
+	padding-top: 2rem;
+	overflow: hidden;
+}
+
+.products .box-container .box .image img {
+	height: 25rem;
+}
+
+.products .box-container .box:hover .image img {
+	transform: scale(1.1);
+}
+
+.products .box-container .box .image .icons {
+	position: absolute;
+	bottom: -7rem;
+	left: 0;
+	right: 0;
+	display: flex;
+}
+
+.products .box-container .box:hover .image .icons {
+	bottom: 0;
+}
+
+.products .box-container .box .image .icons a {
+	height: 5rem;
+	line-height: 5rem;
+	font-size: 2rem;
+	width: 50%;
+	background: var(--pink);
+	color: var(--bg-color);
+}
+
+.products .box-container .box .image .icons a:hover {
+	background: #333;
+}
+
+.products .box-container .box .image .icons .cart-btn {
+	border-left: .1rem solid var(--nav-color);
+	border-right: .1rem solid var(--nav-color);
+	width: 100%;
+}
+
+.products .box-container .box .content {
+	padding: 2rem;
+	text-align: center;
+}
+
+.products .box-container .box .content h3 {
+	font-size: 2.5rem;
+	color: var(--font-color);
+}
+
+.products .box-container .box .content .price {
+	font-size: 2.5rem;
+	color: var(--green);
+	font-weight: bolder;
+	padding-top: 1rem;
+}
+
+.products .box-container .box .content .price span {
+	font-size: 1.5rem;
+	color: #999;
+	font-weight: lighter;
+	text-decoration: line-through;
+}
+
+.products .box-container .btn {
+	display: flex;
+	width: 45%;
+	padding: 1em;
+	margin: 1.5em auto;
+	justify-content: center;
+}
+
+.footer .box-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5rem;
+}
+
+.footer .box-container .box {
+	flex: 1 1 25rem;
+}
+
+.footer .box-container .box h3 {
+	font-family: Brandon Grotesque;
+	color: var(--font-color);
+	font-size: 2.5rem;
+	padding: 1rem 0;
+}
+
+.footer .box-container .box a, p {
+	font-family: Brandon Grotesque;
+	display: block;
+	color: #666;
+	font-size: 1.5rem;
+	padding: 1rem 0;
+}
+
+.footer .box-container .box a:hover {
+	color: var(--green);
+	text-decoration: underline;
+}
+
+.footer .box-container .box img {
+	margin-top: 1rem;
+	width: 100%;
+}
+
+.footer .credit {
+	text-align: center;
+	padding: 1.5rem;
+	padding-top: 2rem;
+	margin-top: 1.5rem;
+	font-size: 2rem;
+	color: var(--font-color);
+	border-top: .1rem solid rgba(0, 0, 0, .1);
+}
+
+.footer .credit span {
+	color: var(--green);
+}
+
+@keyframes slide {
+	0% {margin-left: 0%;}
+	15% {margin-left: 0%;}
+
+	20% {margin-left:-100%;}
+	35% {margin-left:-100%;}
+
+	40% {margin-left:-200%;}
+	60% {margin-left:-200%;}
+
+	65% {margin-left:-300%;}
+	80% {margin-left:-300%;}
+
+	85% {margin-left:-400%;}
+	100% {margin-left:-400%;}
+}
+
+@font-face {
+	font-family: Brandon Grotesque;
+	src: url(https://static1.squarespace.com/static/64c3bb611eee5633855bcae7/t/64df2b36d5cb3d7012ed4596/1692347190859/Brandon+Grotesque.otf);
+}
+
+/* media queries */
+@media (max-width:991px) {
+	html {
+		font-size: 55%;
+	}
+
+	header {
+		padding: 2rem;
+	}
+
+	section {
+		padding: 2rem;
+	}
+
+	.home {
+		background-position: left;
+	}
+}
+
+@media (max-width:768px) {
+	header .fa-bars {
+		display: block;
+	}
+
+	header .navbar {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		background: var(--nav-color);
+		border-top: .1rem solid rgba(0, 0, 0, .1);
+		clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+	}
+
+	header #toggler:checked ~ .navbar {
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+	}
+
+	header .navbar a {
+		margin: 1.5rem;
+		padding: 1.5rem;
+		background: var(--bg-color);
+		border: .1rem solid rgba(0, 0, 0, .1);
+		display: block;
+	}
+
+	.home .content h3 {
+		font-size: 5rem;
+	}
+
+	.home .content span {
+		font-size: 2.5rem;
+	}
+
+	.icons-container .icons h3 {
+		font-size: 2rem;
+	}
+
+	.icons-container .icons span {
+		font-size: 1.7rem;
+	}
+}
+
+@media (max-width:450px) {
+	html {
+		font-size: 50%;
+	}
+
+	.heading {
+		font-size: 3rem;
+	}
+}

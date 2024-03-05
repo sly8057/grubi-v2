@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="style.css" rel="stylesheet">
+		<title>¡Registrate!</title>
+	</head>
+	<body>
+		<header class="header">
+			<div class="contenedor">
+				<h1>Grubi</h1>
+				<input type="checkbox" id="menu-bar">
+				<label for="menu-bar" class="icon-menu"></label>
+				<nav class="menu">
+					<a href="index.html">Página de inicio</a>
+					<a href="login.html">Login</a>
+					<a href="productos.html">Productos</a>
+					<a href="#">Registro</a>
+				</nav>
+			</div>
+		</header>
+		<main class="main">
+			<section class="signup-login__container">
+				<h2>¡Registrate!</h2>
+				<form action="registro.html" method="post" class="signup-login__container--form">
+					<input type="text" id="input" name="user-name" placeholder="Nombre">
+					<input type="text" id="input" name="user-lastnameP" placeholder="Apellido Paterno">
+					<input type="text" id="input" name="user-lastnameM" placeholder="Apellido Materno">
+					<input type="email" id="input" name="user-mail" placeholder="Correo electrónico">
+					<input type="password" id="input" name="user-psw" placeholder="Contraseña">
+					<input class="button" type="submit" value="Crear cuenta">
+				</form>
+				<p>Ya tienes una cuenta? <a href="login.html">Inicia sesión</a></p>
+			</section>
+		</main>
+	</body>
+</html>
