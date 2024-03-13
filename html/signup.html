@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>¡Inicia Sesión!</title>
+	<title>¡Registrate!</title>
 
 	<!-- font awesome -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -21,9 +21,9 @@
 
 		<nav class="navbar">
 			<a href="../index.html">Inicio</a>
-			<a href="#">Log in</a>
+			<a href="login.html">Log in</a>
 			<a href="productos.html">Productos</a>
-			<a href="signup.html">Sign up</a>
+			<a href="#">Sign up</a>
 		</nav>
 
 		<div class="icons">
@@ -34,11 +34,19 @@
 	</header>
 <!-- header section end -->
 
-<!-- login section start -->
+<!-- signup section start -->
 	<section class="form">
 		<div class="container">
-			<form action="../php/login.php" method="post">
-				<h1>log in</h1>
+			<form action="../php/signup.php" method="post">
+				<h1>sign up</h1>
+				<div class="input-box">
+					<input type="text" name="user-name" placeholder="Nombre" required>
+					<i class="fas fa-user"></i>
+				</div>
+				<div class="input-box">
+					<input type="text"  name="user-surname" placeholder="Apellido(s)" required>
+					<i class="fas fa-user"></i>
+				</div>
 				<div class="input-box">
 					<input type="email" name="user-mail" placeholder="Correo electrónico" required>
 					<i class="fas fa-envelope"></i>
@@ -48,14 +56,14 @@
 					<i class="fas fa-lock"></i>
 				</div>
 
-				<button type="submit" class="btn">Iniciar sesión</button>
+				<button type="submit" class="btn">Crear cuenta</button>
 
 				<div class="login-link">
-					<p>¿No tienes una cuenta aún? <a href="signup.html">Registrate</a></p>
+					<p>¿Ya tienes una cuenta? <a href="login.html">Inicia sesión</a></p>
 				</div>
 			</form>
 		</div>
 	</section>
-<!-- login section end -->
+<!-- signup section end -->
 </body>
 </html>
