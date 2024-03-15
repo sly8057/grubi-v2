@@ -243,7 +243,7 @@ header .fa-bars {
 	padding: 0;
 	width: 500%;
 	height: 100%;
-	animation: slide 20s infinite alternate;
+	animation: slide 15s infinite alternate;
 }
 
 .frame-slider ul:hover {

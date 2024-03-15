@@ -12,7 +12,7 @@
 
     if($nr == 1) {
         // echo " -> usuario ingresado -> Bienvenid@: " .$name;
-        header("Location: ../index.html");
+        header("Location: ../html/products.html");
         exit;
     } else if($nr == 0) {
         echo " -> error al ingresar";
