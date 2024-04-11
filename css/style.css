@@ -397,6 +397,10 @@ header .fa-bars {
 	padding: 1rem 0;
 }
 
+.footer .box-container .box .email {
+	text-transform: none;
+}
+
 .footer .box-container .box a:hover {
 	color: var(--green);
 	text-decoration: underline;
@@ -525,6 +529,12 @@ header .fa-bars {
 
 .login-link p a:hover {
 	text-decoration: underline;
+}
+
+section .spacing {
+	padding: 5rem;
+	padding-top: 10rem;
+	padding-bottom: 5rem;
 }
 
 

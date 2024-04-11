@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>¡Registrate!</title>
+
+	<!-- font awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+	<!-- css file -->
+	<link href="../css/style.css" rel="stylesheet">
+</head>
+<body class="signup-login">
+	<!-- header section start -->
+	<header>
+		<input type="checkbox" id="toggler">
+		<label for="toggler" class="fas fa-bars"></label>
+
+		<a href="#" class="logo"><img src="../img/decorations/grubi-logo.jpg" alt=""></a>
+
+		<nav class="navbar">
+			<a href="admin.html">Inicio de Administrador</a>
+		</nav>
+
+		<div class="icons">
+			<a href="#" class="fas fa-user"></a>
+		</div>
+	</header>
+<!-- header section end -->
+
+<!-- signup section start -->
+	<section class="form">
+		<div class="container">
+			<form action="../php/regproducts.php" method="post">
+				<h1>Maceta</h1>
+				<div class="input-box">
+					<input type="text" name="maceta-sku" placeholder="sku" required>
+					<i class="fas fa-barcode"></i>
+				</div>
+				<div class="input-box">
+					<input type="text"  name="maceta-categoria" placeholder="Categoría" required>
+					<i class="fas fa-gears"></i>
+				</div>
+				<div class="input-box">
+					<input type="text"  name="maceta-caracteristicas" placeholder="Características" required>
+					<i class="fas fa-note-sticky"></i>
+				</div>
+				<div class="input-box">
+					<input type="text"  name="maceta-precio" placeholder="Precio" required>
+					<i class="fas fa-money-bill"></i>
+				</div>
+				<div class="input-box">
+					<input type="number"  name="maceta-unidades" placeholder="Unidades" required>
+					<i class="fas fa-hashtag"></i>
+				</div>
+				<div class="input-box">
+					<input type="text"  name="maceta-modelo" placeholder="Modelo" required>
+					<i class="fas fa-pen-to-square"></i>
+				</div>
+				<div class="input-box">
+					<input type="text"  name="maceta-imagen" placeholder="Imagen" required>
+					<i class="fas fa-image"></i>
+				</div>
+
+				<button type="submit" class="btn">Registrar</button>
+			</form>
+		</div>
+	</section>
+<!-- signup section end -->
+</body>
+</html>
