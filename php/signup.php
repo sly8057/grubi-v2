@@ -6,7 +6,7 @@
     $mail = $_POST['user-mail'];
     $pass = $_POST['user-psw'];
 
-    $sql = mysqli_query($con,"INSERT INTO users(id, name, surname, mail, pass) VALUES(0, '$name', '$surname', '$mail', '$pass')");
+    $sql = mysqli_query($con,"INSERT INTO clientes(id_cliente, nombre, apellido, correo, contra) VALUES(0, '$name', '$surname', '$mail', '$pass')");
 
     if($sql) {
         echo " -> usuario registrado";

@@ -1,20 +1,25 @@
 <?php
     include "../connection.php";
 
-    $mail = $_POST['user-mail'];
-    $pass = $_POST['user-psw'];
+    $correo = $_POST['user-mail'];
+    $contra = $_POST['user-psw'];
 
-    $sql = mysqli_query($con,"SELECT * FROM users WHERE mail = '$mail' AND pass = '$pass'");
+    $usr = mysqli_query($con,"SELECT * FROM clientes WHERE correo = '$correo' AND contra = '$contra'");
+    $adm = mysqli_query($con,"SELECT * FROM propietarios WHERE correo = '$correo' AND contra = '$contra'");
 
-	$nr = mysqli_num_rows($sql);
+	$nrUsr = mysqli_num_rows($usr);
+	$nrAdm = mysqli_num_rows($adm);
 
 	// $name = mysqli_result_fetch;
 
-    if($nr == 1) {
+    if($nrUsr == 1) {
         // echo " -> usuario ingresado -> Bienvenid@: " .$name;
-        header("Location: ../html/products.html");
+        header("Location: products.php");
         exit;
-    } else if($nr == 0) {
+    } else if($nrAdm == 1) {
+        header("Location: admin.php");
+        exit;
+    } else if($nrUsr == 0 || $nrAdm == 0) {
         echo " -> error al ingresar";
     }
 ?>
