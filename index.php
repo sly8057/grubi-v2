@@ -28,8 +28,13 @@
 		</nav>
 
 		<div class="icons">
+			<?php
+				if(isset($_GET['nombre'])){
+					$nombre = $_GET['nombre'];
+				}
+            ?>
 			<a href="#" class="fas fa-music"></a>
-			<a href="#" class="fas fa-shopping-cart"></a>
+			<a href="php/createPDF.php?nombre=<?php echo "$nombre"; ?>" class="fas fa-shopping-cart"></a>
 			<a href="#" class="fas fa-user"></a>
 		</div>
 	</header>

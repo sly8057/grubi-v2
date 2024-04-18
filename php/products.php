@@ -21,7 +21,7 @@
 		<a href="#" class="logo"><img src="../img/decorations/grubi-logo.jpg" alt=""></a>
 
 		<nav class="navbar">
-			<a href="../index.html">Inicio</a>
+			<a href="../index.php">Inicio</a>
 			<a href="../html/login.html">Log in</a>
 			<a href="#">Productos</a>
 			<a href="../html/signup.html">Sign up</a>
@@ -55,7 +55,7 @@
 					<img src="../img/products/<?php echo $row['imagen']?>" alt="">
 					<div class="icons">
 						<a href="#" class="fas fa-heart"></a>
-						<a href="#" class="cart-btn">añade al carrito</a>
+						<a href="createPDF.php" class="cart-btn" target="_blank">añade al carrito</a>
 						<a href="#" class="fas fa-share"></a>
 					</div>
 				</div>
@@ -83,7 +83,7 @@
 					<img src="../img/products/<?php echo $row['imagen']?>" alt="">
 					<div class="icons">
 						<a href="#" class="fas fa-heart"></a>
-						<a href="#" class="cart-btn">añade al carrito</a>
+						<a href="createPDF.php" class="cart-btn" target="_blank">añade al carrito</a>
 						<a href="#" class="fas fa-share"></a>
 					</div>
 				</div>

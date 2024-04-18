@@ -13,7 +13,7 @@
 
     if($sql) {
         echo " -> maceta registrada";
-        header("Location: products.php");
+        header("Location: admin.php");
         exit;
     } else {
         echo " -> error al registrar";

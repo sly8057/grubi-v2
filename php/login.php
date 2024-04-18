@@ -12,9 +12,16 @@
 
 	// $name = mysqli_result_fetch;
 
+
     if($nrUsr == 1) {
         // echo " -> usuario ingresado -> Bienvenid@: " .$name;
-        header("Location: products.php");
+        $rUsr = mysqli_fetch_array($usr);
+        $nombre = $rUsr['nombre'];
+        $msg = "Sesion iniciada con el correo: ".$correo; 
+            header("refresh:1; url=../index.php?nombre=$nombre");
+            echo '<div>'.$msg.'</div>';
+            echo '<p>Serás redirigido al índice en 5 segundos.</p>';
+        // header("Location: products.php");
         exit;
     } else if($nrAdm == 1) {
         header("Location: admin.php");

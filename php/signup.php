@@ -10,7 +10,7 @@
 
     if($sql) {
         echo " -> usuario registrado";
-        header("Location: ../index.html");
+        header("Location: ../index.php");
         exit;
     } else {
         echo " -> error al registrar";
