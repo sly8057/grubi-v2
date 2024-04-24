@@ -1,55 +1,69 @@
 <?php
-include '../connection.php';
+	include "../connection.php";
 
-$sql = mysqli_query($con,"SELECT * FROM users");
-$st = Connection::connect()->prepare("SELECT * FROM users");
-$st->execute();
-$res = $st->fetchAll(PDO::FETCH_ASSOC);
+	if(!isset($_GET['nombre'])){
+		echo "No se ha seleccionado un producto";
+	}
 
-echo '<pres>';
-var_dump($res);
-echo '</pres>';
+	$nombre = $_GET['nombre'];
+	$usr = mysqli_query($con,"SELECT * FROM clientes WHERE nombre = '$nombre'");
+	$rUsr = mysqli_fetch_array($usr);
 
-?>
+    $prod = mysqli_query($con,"SELECT * FROM macetas WHERE modelo = 'Risk'");
+    $rprod = mysqli_fetch_array($prod);
 
-<?php
-require('../../fpdf/fpdf.php');
+    require('../fpdf/fpdf.php');
+    $x = 10;
+    $y = 10;
+    $pdf = new FPDF('P', 'mm', 'A4');
 
-class PDF extends FPDF
-{
-// Cabecera de página
-function Header()
-{
-    // Logo
-    $this->Image('../img/decorations/grubi-logo.png',10,8,33);
-    // Arial bold 15
-    $this->SetFont('Arial','B',15);
-    // Movernos a la derecha
-    $this->Cell(80);
-    // Título
-    $this->Cell(30,10,'Title',1,0,'C');
-    // Salto de línea
-    $this->Ln(20);
-}
+    $pdf->AddPage();
+    $pdf->SetXY($x, $y);
+    $pdf->Image('../img/decorations/grubi-logo.png',150,20,33,0,'PNG','index.php');
+    $pdf->SetFont('Courier','B',16);
+    $pdf->SetFillColor(255,196,102);
+    $pdf->SetDrawColor(255,255,255);
 
-// Pie de página
-function Footer()
-{
-    // Posición: a 1,5 cm del final
-    $this->SetY(-15);
-    // Arial italic 8
-    $this->SetFont('Arial','I',8);
-    // Número de página
-    $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
-}
-}
+    // green: rgb(131,164,102);
+    // black: rgb(0, 0, 0);
+    $pdf->SetTextColor(131,164,102);
 
-// Creación del objeto de la clase heredada
-$pdf = new PDF();
-$pdf->AliasNbPages();
-$pdf->AddPage();
-$pdf->SetFont('Times','',12);
-for($i=1;$i<=40;$i++)
-    $pdf->Cell(0,10,'Imprimiendo línea número '.$i,0,1);
-$pdf->Output();
+    $pdf->SetXY(25,$y+5);
+    $pdf->SetFontSize(35);
+    $pdf->Cell(150,10,'RECIBO',0,0,'L',0);
+    $pdf->SetXY(25,$y+25);
+    $pdf->SetFontSize(9);
+    $pdf->SetTextColor(0,0,0);
+
+    // Datos genéricos
+    $pdf->Cell(60,0,'DE: GRUBI');
+    $fecha = Date("d-m-Y");
+    $pdf->Cell(0,0,'FECHA DE EXPEDICION: '.$fecha.'');
+    $pdf->SetXY(25,38);
+    $pdf->Cell(60,5,'TELEFONO: 33542983');
+    $pdf->Cell(60,5,'CORREO: tenko_grubimex@gmail.com');
+    //Fin datos genéricos
+
+    //Datos del comprador
+    $pdf->SetXY(25,50);
+    $pdf->Cell(60,10,'PARA:');
+    $pdf->Cell(60,10,'Email:');
+    $pdf->SetXY(25,53);
+    $pdf->SetTextColor(131,164,102);
+    $pdf->Cell(60,15,$rUsr['nombre'].' '.$rUsr['apellido']);
+    $pdf->SetTextColor(0,0,0);
+    $pdf->Cell(60,15,$rUsr['correo']);
+    $pdf->SetXY(25,56);
+
+
+    $y = 40;
+
+
+    //footer
+    $pdf->SetXY($x+10,200);
+    $pdf->Cell(0,5,'GRACIAS POR SU COMPRA',0,0,'C');
+    $pdf->SetXY($x+10,205);
+    $pdf->Image('../img/products/' .$rprod['imagen'],70,215,80,0,'PNG','');
+    //Output the document
+    $pdf->Output('I',$rUsr['nombre'].".pdf");
 ?>

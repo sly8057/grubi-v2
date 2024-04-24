@@ -34,7 +34,7 @@
 				}
             ?>
 			<a href="#" class="fas fa-music"></a>
-			<a href="php/createPDF.php?nombre=<?php echo "$nombre"; ?>" class="fas fa-shopping-cart"></a>
+			<a href="php/pdf.php?nombre=<?php echo "$nombre"; ?>" class="fas fa-shopping-cart"></a>
 			<a href="#" class="fas fa-user"></a>
 		</div>
 	</header>
