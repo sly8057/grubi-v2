@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['id_cliente'])){
+	$msg = "No se ha iniciado sesión";
+	header("refresh:1; url=../html/login.html");
+	echo '<div>'.$msg.'</div>';
+	echo '<p>Serás redirigido al log in en 5 segundos.</p>';
+// header("Location: products.php");
+exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -29,7 +41,7 @@
 
 		<div class="icons">
 			<a href="#" class="fas fa-music"></a>
-			<a href="#" class="fas fa-shopping-cart"></a>
+			<a href="carrito.php" class="fas fa-shopping-cart"></a>
 			<a href="#" class="fas fa-user"></a>
 		</div>
 	</header>
@@ -53,15 +65,20 @@
 			<div class="box">
 				<div class="image">
 					<img src="../img/products/<?php echo $row['imagen']?>" alt="">
-					<div class="icons">
-						<a href="#" class="fas fa-heart"></a>
-						<a href="fpdf.php" class="cart-btn" target="_blank">añade al carrito</a>
-						<a href="#" class="fas fa-share"></a>
-					</div>
+					<form action="carrito.php" method="post">
+						<div class="icons">
+							<a href="#" class="fas fa-heart"></a>
+							<!-- <input type="number" value="1" name="cantidad"> -->
+							<input type="hidden" value="<?php $row['sku']; ?>" name="sku">
+							<input type="submit" name="agregar" value='añade al carrito' class="cart-btn"></input>
+							<!-- <a href="fpdf.php" class="cart-btn" target="_blank">añade al carrito</a> -->
+							<a href="#" class="fas fa-share"></a>
+						</div>
+					</form>
 				</div>
 				<div class="content">
 					<h3><?php echo $row['modelo']?></h3>
-					<div class="price"> <?php echo $row['precio']?></div>
+					<div class="price"> <?php echo $row['precio'];?></div>
 				</div>
 			</div>
 			<?php }	?>
@@ -81,11 +98,15 @@
 			<div class="box">
 				<div class="image">
 					<img src="../img/products/<?php echo $row['imagen']?>" alt="">
-					<div class="icons">
-						<a href="#" class="fas fa-heart"></a>
-						<a href="createPDF.php" class="cart-btn" target="_blank">añade al carrito</a>
-						<a href="#" class="fas fa-share"></a>
-					</div>
+					<form action="carrito.php" method="post">
+						<div class="icons">
+							<a href="#" class="fas fa-heart"></a>
+							<input type="hidden" name="sku" value="<?php echo $row['sku']; ?>">
+							<input type="submit" name="agregar" value='añade al carrito' class="cart-btn"></input>
+							<!-- <a href="fpdf.php" class="cart-btn" target="_blank">añade al carrito</a> -->
+							<a href="#" class="fas fa-share"></a>
+						</div>
+					</form>
 				</div>
 				<div class="content">
 					<h3><?php echo $row['modelo']?></h3>
@@ -96,6 +117,15 @@
 		</div>
 	</section>
 <!-- products section start -->
+
+<?php
+	if(isset($_REQUEST["agregar"])){
+		$sku = $_REQUEST["sku"];
+
+		$_SESSION['carrito']['sku'] = $sku;
+		$_SESSION['carrito']['cantidad'] = 1;
+	}
+?>
 
 <!-- footer section start -->
 	<footer class="footer">

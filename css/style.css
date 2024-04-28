@@ -340,6 +340,19 @@ header .fa-bars {
 	width: 100%;
 }
 
+.products .box-container .box .image .icons input {
+	height: 5rem;
+	line-height: 5rem;
+	font-size: 2rem;
+	width: 50%;
+	background: var(--pink);
+	color: var(--bg-color);
+}
+
+.products .box-container .box .image .icons input:hover {
+	background: #333;
+}
+
 .products .box-container .box .content {
 	padding: 2rem;
 	text-align: center;
