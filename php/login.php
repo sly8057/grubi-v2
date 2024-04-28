@@ -1,6 +1,8 @@
 <?php
     include "../connection.php";
 
+    session_start();
+
     $correo = $_POST['user-mail'];
     $contra = $_POST['user-psw'];
 
@@ -17,7 +19,7 @@
         // echo " -> usuario ingresado -> Bienvenid@: " .$name;
         $rUsr = mysqli_fetch_array($usr);
         $nombre = $rUsr['nombre'];
-        $msg = "Sesion iniciada con el correo: ".$correo; 
+        $msg = "Sesion iniciada con el correo: ".$correo;
             header("refresh:1; url=../index.php?nombre=$nombre");
             echo '<div>'.$msg.'</div>';
             echo '<p>Serás redirigido al índice en 5 segundos.</p>';
