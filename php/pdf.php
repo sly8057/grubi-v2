@@ -1,12 +1,19 @@
 <?php
 	include "../connection.php";
 
-	if(!isset($_GET['nombre'])){
-		echo "No se ha seleccionado un producto";
+    session_start();
+
+	if(!isset($_SESSION['id_cliente'])){
+        $msg = "No se ha iniciado sesión";
+        header("refresh:1; url=../html/login.html");
+        echo '<div>'.$msg.'</div>';
+        echo '<p>Serás redirigido al log in en 5 segundos.</p>';
+    // header("Location: products.php");
+    exit;
 	}
 
-	$nombre = $_GET['nombre'];
-	$usr = mysqli_query($con,"SELECT * FROM clientes WHERE nombre = '$nombre'");
+	$id_cliente = $_SESSION['id_cliente'];
+	$usr = mysqli_query($con,"SELECT * FROM clientes WHERE id_cliente = '$id_cliente'");
 	$rUsr = mysqli_fetch_array($usr);
 
     $prod = mysqli_query($con,"SELECT * FROM macetas WHERE modelo = 'Risk'");

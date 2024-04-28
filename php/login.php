@@ -19,16 +19,20 @@
         // echo " -> usuario ingresado -> Bienvenid@: " .$name;
         $rUsr = mysqli_fetch_array($usr);
         $nombre = $rUsr['nombre'];
+        $_SESSION['id_cliente'] = $rUsr['id_cliente'];
         $msg = "Sesion iniciada con el correo: ".$correo;
-            header("refresh:1; url=../index.php?nombre=$nombre");
+            header("refresh:1; url=products.php");
             echo '<div>'.$msg.'</div>';
-            echo '<p>Serás redirigido al índice en 5 segundos.</p>';
+            echo '<p>Serás redirigido a la página de productos en 5 segundos.</p>';
         // header("Location: products.php");
         exit;
     } else if($nrAdm == 1) {
-        header("Location: admin.php");
+        $rAdm = mysqli_fetch_array($adm);
+        $nombre = $rAdm['nombre'];
+        $_SESSION['id_owner'] = $rAdm['id_owner'];
+        header("refresh:1; url=admin.php");
         exit;
     } else if($nrUsr == 0 || $nrAdm == 0) {
-        echo " -> error al ingresar";
+        echo '<div> error al ingresar </div>';
     }
 ?>

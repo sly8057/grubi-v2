@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -29,13 +30,15 @@
 
 		<div class="icons">
 			<?php
-				if(isset($_GET['nombre'])){
-					$nombre = $_GET['nombre'];
-				}
+				// if(isset($_GET['nombre'])){
+				// 	$nombre = $_GET['nombre'];
+				// }
             ?>
 			<a href="#" class="fas fa-music"></a>
-			<a href="php/pdf.php?nombre=<?php echo "$nombre"; ?>" class="fas fa-shopping-cart"></a>
+			<!-- <a href="php/pdf.php?nombre=<?php //echo "$nombre"; ?>" class="fas fa-shopping-cart"></a> -->
+			<a href="php/pdf.php" class="fas fa-shopping-cart"></a>
 			<a href="#" class="fas fa-user"></a>
+			<a href="php/logout.php" class="fas fa-right-from-bracket"></a>
 		</div>
 	</header>
 <!-- header section end -->
