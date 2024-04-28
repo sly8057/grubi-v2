@@ -55,7 +55,7 @@
 					<img src="../img/products/<?php echo $row['imagen']?>" alt="">
 					<div class="icons">
 						<a href="#" class="fas fa-heart"></a>
-						<a href="createPDF.php" class="cart-btn" target="_blank">añade al carrito</a>
+						<a href="fpdf.php" class="cart-btn" target="_blank">añade al carrito</a>
 						<a href="#" class="fas fa-share"></a>
 					</div>
 				</div>

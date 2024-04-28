@@ -105,50 +105,22 @@
 		<h1 class="heading"> <span> productos </span> más populares </h1>
 		<p>Hemos creado tu nueva maceta inteligente, la cual te acompañará todos los días con tu música favorita.</p>
 		<div class="box-container">
-			<div class="box">
-				<span class="discount">-10%</span>
-				<div class="image">
-					<img src="img/products/cyrus.webp" alt="">
-					<div class="icons">
-						<a href="#" class="fas fa-heart"></a>
-						<a href="#" class="cart-btn">añade al carrito</a>
-						<a href="#" class="fas fa-share"></a>
-					</div>
-				</div>
-				<div class="content">
-					<h3>cyrus</h3>
-					<div class="price"> $59.99 <span>$65</span></div>
-				</div>
-			</div>
+			<?php
+				include("connection.php");
+				$sql = mysqli_query($con,"SELECT * FROM macetas WHERE modelo = 'Cyrus' OR modelo = 'Risk' OR modelo = 'Snas'");
+				// $sql = mysqli_query($con,"SELECT * FROM users WHERE mail = '$mail' AND pass = '$pass'");
+				while($row = mysqli_fetch_array($sql)) {
+			?>
 			<div class="box">
 				<div class="image">
-					<img src="img/products/noelle.webp" alt="">
-					<div class="icons">
-						<a href="#" class="fas fa-heart"></a>
-						<a href="#" class="cart-btn">añade al carrito</a>
-						<a href="#" class="fas fa-share"></a>
-					</div>
+					<img src="img/products/<?php echo $row['imagen']?>" alt="">
 				</div>
 				<div class="content">
-					<h3>noelle</h3>
-					<div class="price"> $55 </div>
+					<h3><?php echo $row['modelo']?></h3>
+					<div class="price"> <?php echo $row['precio']?></div>
 				</div>
 			</div>
-			<div class="box">
-				<span class="discount">-15%</span>
-				<div class="image">
-					<img src="img/products/risk.webp" alt="">
-					<div class="icons">
-						<a href="#" class="fas fa-heart"></a>
-						<a href="#" class="cart-btn">añade al carrito</a>
-						<a href="#" class="fas fa-share"></a>
-					</div>
-				</div>
-				<div class="content">
-					<h3>risk</h3>
-					<div class="price"> $51.99 <span>$65</span></div>
-				</div>
-			</div>
+			<?php }	?>
 		</div>
 		<div class="box-container">
 			<a href="php/products.php" class="btn">más productos</a>
