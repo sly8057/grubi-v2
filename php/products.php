@@ -1,15 +1,14 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['id_cliente'])){
-	$msg = "No se ha iniciado sesión";
-	header("refresh:1; url=../html/login.html");
-	echo '<div>'.$msg.'</div>';
-	echo '<p>Serás redirigido al log in en 5 segundos.</p>';
-// header("Location: products.php");
-exit;
+include("../connection.php");
+
+if(isset($_SESSION['id_cliente'])){
+	$id_cliente = $_SESSION['id_cliente'];
+	$usr = mysqli_query($con,"SELECT nombre FROM clientes WHERE id_cliente = '$id_cliente'");
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -34,15 +33,20 @@ exit;
 
 		<nav class="navbar">
 			<a href="../index.php">Inicio</a>
-			<a href="../html/login.html">Log in</a>
 			<a href="#">Productos</a>
-			<a href="../html/signup.html">Sign up</a>
+			<?php if(!isset($_SESSION['id_cliente'])): ?>
+				<a href="../html/login.html">Log in</a>
+				<a href="../html/signup.html">Sign up</a>
+				<?php endif; ?>
 		</nav>
 
 		<div class="icons">
-			<a href="#" class="fas fa-music"></a>
-			<a href="carrito.php" class="fas fa-shopping-cart"></a>
-			<a href="#" class="fas fa-user"></a>
+			<?php if(isset($_SESSION['id_cliente'])): ?>
+				<a href="#" class="fas fa-music"></a>
+				<a href="carrito.php" class="fas fa-shopping-cart"></a>
+				<a href="perfil.php" class="fas fa-user"></a>
+				<a href="logout.php" class="fas fa-right-from-bracket"></a>
+				<?php endif; ?>
 		</div>
 	</header>
 <!-- header section end -->
@@ -65,11 +69,12 @@ exit;
 			<div class="box">
 				<div class="image">
 					<img src="../img/products/<?php echo $row['imagen']?>" alt="">
-					<form action="carrito.php" method="post">
+					<form action="addToCart.php" method="post">
 						<div class="icons">
 							<a href="#" class="fas fa-heart"></a>
 							<!-- <input type="number" value="1" name="cantidad"> -->
-							<input type="hidden" value="<?php $row['sku']; ?>" name="sku">
+							<input type="hidden" value="<?php echo $row['sku']; ?>" name="sku">
+							<input type="hidden" name="btn_sku" value="btn_<?php echo $row['sku']; ?>">
 							<input type="submit" name="agregar" value='añade al carrito' class="cart-btn"></input>
 							<!-- <a href="fpdf.php" class="cart-btn" target="_blank">añade al carrito</a> -->
 							<a href="#" class="fas fa-share"></a>
@@ -98,10 +103,11 @@ exit;
 			<div class="box">
 				<div class="image">
 					<img src="../img/products/<?php echo $row['imagen']?>" alt="">
-					<form action="carrito.php" method="post">
+					<form action="addToCart.php" method="post">
 						<div class="icons">
 							<a href="#" class="fas fa-heart"></a>
-							<input type="hidden" name="sku" value="<?php echo $row['sku']; ?>">
+							<input type="hidden" value="<?php echo $row['sku']; ?>" name="sku">
+							<input type="hidden" name="btn_sku" value="btn_<?php echo $row['sku']; ?>">
 							<input type="submit" name="agregar" value='añade al carrito' class="cart-btn"></input>
 							<!-- <a href="fpdf.php" class="cart-btn" target="_blank">añade al carrito</a> -->
 							<a href="#" class="fas fa-share"></a>
@@ -111,6 +117,7 @@ exit;
 				<div class="content">
 					<h3><?php echo $row['modelo']?></h3>
 					<div class="price"> <?php echo $row['precio']?></div>
+					<div> <p> <?php echo $row['caracteristicas'];?> </p></div>
 				</div>
 			</div>
 			<?php }	?>
@@ -119,12 +126,13 @@ exit;
 <!-- products section start -->
 
 <?php
-	if(isset($_REQUEST["agregar"])){
-		$sku = $_REQUEST["sku"];
+	// if(isset($_REQUEST["agregar"])){
+	// 	$sku = $_REQUEST["sku"];
+	// 	$precio = $_REQUEST["precio"];
 
-		$_SESSION['carrito']['sku'] = $sku;
-		$_SESSION['carrito']['cantidad'] = 1;
-	}
+	// 	$_SESSION['carrito'][$sku]['cantidad'] = 1;
+	// 	$_SESSION['carrito'][$sku]['precio'] = $precio;
+	// }
 ?>
 
 <!-- footer section start -->
