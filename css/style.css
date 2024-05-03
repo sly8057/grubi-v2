@@ -603,6 +603,31 @@ section .spacing {
 	color: var(--bg-color);
 }
 
+.cart table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 0.5rem;
+	border-radius: 0.2rem;
+	overflow: hidden;
+	box-shadow: 0 0 0.4rem rgba(131,164,102, .05);
+}
+
+.cart th, td{
+	padding: 0.4rem;
+	text-align: left;
+	border-bottom: 0.2rem solid var(--font-color);
+}
+
+.pdf a {
+	color: var(--bg-color);
+}
+
+.pdf a:hover{
+	color: var(--font-color);
+}
+
+
+
 
 
 

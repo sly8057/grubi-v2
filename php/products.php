@@ -29,7 +29,7 @@ if(isset($_SESSION['id_cliente'])){
 		<label for="toggler" class="fas fa-bars"></label>
 
 		<!-- <a href="#" class="logo">Grub<span>i</span></a> -->
-		<a href="#" class="logo"><img src="../img/decorations/grubi-logo.jpg" alt=""></a>
+		<a href="../index.php" class="logo"><img src="../img/decorations/grubi-logo.jpg" alt=""></a>
 
 		<nav class="navbar">
 			<a href="../index.php">Inicio</a>
@@ -43,7 +43,7 @@ if(isset($_SESSION['id_cliente'])){
 		<div class="icons">
 			<?php if(isset($_SESSION['id_cliente'])): ?>
 				<a href="#" class="fas fa-music"></a>
-				<a href="carrito.php" class="fas fa-shopping-cart"></a>
+				<a href="cart.php" class="fas fa-shopping-cart"></a>
 				<a href="perfil.php" class="fas fa-user"></a>
 				<a href="logout.php" class="fas fa-right-from-bracket"></a>
 				<?php endif; ?>

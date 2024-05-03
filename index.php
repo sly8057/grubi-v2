@@ -1,4 +1,13 @@
-<?php session_start(); ?>
+<?php
+session_start();
+
+include("connection.php");
+
+if(isset($_SESSION['id_cliente'])){
+	$id_cliente = $_SESSION['id_cliente'];
+	$usr = mysqli_query($con,"SELECT nombre FROM clientes WHERE id_cliente = '$id_cliente'");
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -23,22 +32,20 @@
 
 		<nav class="navbar">
 			<a href="#">Inicio</a>
-			<a href="html/login.html">Log in</a>
 			<a href="php/products.php">Productos</a>
-			<a href="html/signup.html">Sign up</a>
+			<?php if(!isset($_SESSION['id_cliente'])): ?>
+				<a href="html/login.html">Log in</a>
+				<a href="html/signup.html">Sign up</a>
+				<?php endif; ?>
 		</nav>
 
 		<div class="icons">
-			<?php
-				// if(isset($_GET['nombre'])){
-				// 	$nombre = $_GET['nombre'];
-				// }
-            ?>
-			<a href="#" class="fas fa-music"></a>
-			<!-- <a href="php/pdf.php?nombre=<?php //echo "$nombre"; ?>" class="fas fa-shopping-cart"></a> -->
-			<a href="php/pdf.php" class="fas fa-shopping-cart"></a>
-			<a href="#" class="fas fa-user"></a>
-			<a href="php/logout.php" class="fas fa-right-from-bracket"></a>
+			<?php if(isset($_SESSION['id_cliente'])): ?>
+				<a href="#" class="fas fa-music"></a>
+				<a href="php/carrito.php" class="fas fa-shopping-cart"></a>
+				<a href="php/perfil.php" class="fas fa-user"></a>
+				<a href="php/logout.php" class="fas fa-right-from-bracket"></a>
+				<?php endif; ?>
 		</div>
 	</header>
 <!-- header section end -->
@@ -133,10 +140,10 @@
 		<div class="box-container">
 			<div class="box">
 				<h3>Menú</h3>
-				<a href="#banner">inicio</a>
+				<a href="#">inicio</a>
 				<a href="#about">sobre nosotros</a>
 				<a href="#founders">fundadoras</a>
-				<a href="#products">productos</a>
+				<a href="php/products.php">productos</a>
 			</div>
 			<div class="box">
 				<h3>social</h3>
@@ -149,7 +156,7 @@
 				<p>Tel: 33542983</p>
 				<p class="email">tenko_grubimex@gmail.com</p>
 				<p>Av. de la Paz 1701, Col Americana, Americana, 44160 Guadalajara, Jal.</p>
-				<img src="images/payments.png" alt="">
+				<img src="img/decorations/payments.png" alt="">
 			</div>
 		</div>
 		<div class="credit"> created by <span> sly </span> <br> &copy; 2024 Grubi by <span> Tenko </span> | todos los derechos reservados </div>

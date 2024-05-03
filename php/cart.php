@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+include("../connection.php");
+
 if(isset($_SESSION['id_cliente'])){
 	$id_cliente = $_SESSION['id_cliente'];
 	$usr = mysqli_query($con,"SELECT nombre FROM clientes WHERE id_cliente = '$id_cliente'");
@@ -27,11 +29,11 @@ if(isset($_SESSION['id_cliente'])){
 		<label for="toggler" class="fas fa-bars"></label>
 
 		<!-- <a href="#" class="logo">Grub<span>i</span></a> -->
-		<a href="#" class="logo"><img src="../img/decorations/grubi-logo.jpg" alt=""></a>
+		<a href="../index.php" class="logo"><img src="../img/decorations/grubi-logo.jpg" alt=""></a>
 
 		<nav class="navbar">
 			<a href="../index.php">Inicio</a>
-			<a href="#">Productos</a>
+			<a href="products.php">Productos</a>
 			<?php if(!isset($_SESSION['id_cliente'])): ?>
 				<a href="../html/login.html">Log in</a>
 				<a href="../html/signup.html">Sign up</a>
@@ -82,8 +84,8 @@ if(isset($_SESSION['id_cliente'])){
 					?>
 				</tbody>
 			</table>
-			<a href="fpdf.php" target="_blank" class="btn" class="fas fa-file-pdf"></a>
 		</div>
+		<button class="btn pdf"><a href="pdf.php" target="_blank" class="fas fa-file-pdf"></a></button>
 	</section>
 <!-- carrito section end -->
 
@@ -93,10 +95,10 @@ if(isset($_SESSION['id_cliente'])){
 		<div class="box-container">
 			<div class="box">
 				<h3>Menú</h3>
-				<a href="#banner">inicio</a>
-				<a href="#about">sobre nosotros</a>
-				<a href="#founders">fundadoras</a>
-				<a href="#products">productos</a>
+				<a href="../index.php">inicio</a>
+				<a href="../index.php#about">sobre nosotros</a>
+				<a href="../index.php#founders">fundadoras</a>
+				<a href="products.php">productos</a>
 			</div>
 			<div class="box">
 				<h3>social</h3>
@@ -109,7 +111,7 @@ if(isset($_SESSION['id_cliente'])){
 				<p>Tel: 33542983</p>
 				<p class="email">tenko_grubimex@gmail.com</p>
 				<p>Av. de la Paz 1701, Col Americana, Americana, 44160 Guadalajara, Jal.</p>
-				<img src="images/payments.png" alt="">
+				<img src="../img/decorations/payments.png" alt="">
 			</div>
 		</div>
 		<div class="credit"> created by <span> sly </span> <br> &copy; 2024 Grubi by <span> Tenko </span> | todos los derechos reservados </div>

@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['sku']) && isset($_POST
 	echo "</pre>";
 
 	// Redirigir a la página del maceta o a donde desees después de agregar al carrito
-	//header("Location: products.php");
+	header("Location: products.php");
 	exit;
 }
 ?>

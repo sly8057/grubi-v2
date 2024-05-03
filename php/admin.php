@@ -32,7 +32,7 @@
 		<label for="toggler" class="fas fa-bars"></label>
 
 		<!-- <a href="#" class="logo">Grub<span>i</span></a> -->
-		<a href="#" class="logo"><img src="../img/decorations/grubi-logo.jpg" alt=""></a>
+		<a href="../index.php" class="logo"><img src="../img/decorations/grubi-logo.jpg" alt=""></a>
 
 		<nav class="navbar">
 			<a href="../html/regproducts.html">Registrar</a>
@@ -64,6 +64,8 @@
 						<th class = "table">precio</th>
 						<th class = "table">unidades</th>
 						<th class = "table">imagen</th>
+						<th class = "table">editar</th>
+						<th class = "table">eliminar</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -78,6 +80,8 @@
 						<td class = "table" data-label = "precio"><?php echo $row['precio']?></td>
 						<td class = "table" data-label = "unidades"><?php echo $row['unidades']?></td>
 						<td class = "table" data-label = "imagen"><img src="../img/products/<?php echo $row['imagen']?>" alt=""></td>
+						<td class = "table" data-label = "editar"><a href="editProduct.php?sku=<?php echo $row['sku'];?>"  class = "fas fa-pen-to-square"></a></td>
+						<td class = "table" data-label = "eliminar"><a href="deleteProduct.php?sku=<?php echo $row['sku'];?>"  class = "fas fa-pen-to-square"></a></td>
 					</tr>
 					<?php }	?>
 				</tbody>
