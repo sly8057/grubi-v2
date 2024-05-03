@@ -80,8 +80,8 @@
 						<td class = "table" data-label = "precio"><?php echo $row['precio']?></td>
 						<td class = "table" data-label = "unidades"><?php echo $row['unidades']?></td>
 						<td class = "table" data-label = "imagen"><img src="../img/products/<?php echo $row['imagen']?>" alt=""></td>
-						<td class = "table" data-label = "editar"><a href="editProduct.php?sku=<?php echo $row['sku'];?>"  class = "fas fa-pen-to-square"></a></td>
-						<td class = "table" data-label = "eliminar"><a href="deleteProduct.php?sku=<?php echo $row['sku'];?>"  class = "fas fa-pen-to-square"></a></td>
+						<td class = "table edit" data-label = "editar"><a href="editProductForm.php?sku=<?php echo $row['sku'];?>"  class = "fas fa-pen-to-square"></a></td>
+						<td class = "table delete" data-label = "eliminar"><a href="deleteProduct.php?sku=<?php echo $row['sku'];?>"  class = "fas fa-trash"></a></td>
 					</tr>
 					<?php }	?>
 				</tbody>

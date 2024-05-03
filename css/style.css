@@ -6,8 +6,8 @@
 	--green: #83A466;
 	--beige: #C4B093;
 	--font-color: #333;
-	--pink: #FAD7CE;
-	--yellow: #FFF3D4;
+	--pink: #FAD7CE; /* rgb(250,215,206) */
+	--yellow: #FFF3D4; /* rgb(255,243,212) */
 }
 
 * {
@@ -487,6 +487,20 @@ header .fa-bars {
 	padding-right: 3rem;
 }
 
+.container label {
+	background: transparent;
+	border-radius: 1rem;
+	color: var(--bg-color);
+	font-weight: bold;
+	font-size: 1rem;
+	padding: 1rem;
+	padding-right: 3rem;
+}
+
+.edit h1 {
+	margin-top: 7rem;
+}
+
 .container .input-box input::placeholder {
 	color: var(--bg-color);
 }
@@ -594,13 +608,21 @@ section .spacing {
 }
 
 .table tbody tr:hover {
-	background-color: rgba(131, 164, 102, .50);
+	background-color: rgba(131, 164, 102, .25);
 	color: var(--bg-color);
 }
 
 .table tbody td:hover {
-	background-color: rgba(131, 164, 102, .75);
+	background-color: rgba(131, 164, 102, .5);
 	color: var(--bg-color);
+}
+
+.table .edit a {
+	color: rgb(254, 204, 77);
+}
+
+.table .delete a {
+	color: rgb(253, 120, 91);
 }
 
 .cart table {
