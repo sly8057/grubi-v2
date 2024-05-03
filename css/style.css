@@ -617,12 +617,16 @@ section .spacing {
 	color: var(--bg-color);
 }
 
-.table .edit a {
+.edit a {
 	color: rgb(254, 204, 77);
 }
 
-.table .delete a {
+.delete a {
 	color: rgb(253, 120, 91);
+}
+
+.icon a {
+	color: var(--bg-color);
 }
 
 .cart table {
@@ -648,6 +652,19 @@ section .spacing {
 	color: var(--font-color);
 }
 
+tfoot td {
+	background-color: var(--font-color);
+	color: var(--bg-color);
+	font-weight: bold;
+}
+
+.table .btn {
+	display: inline-flex;
+	margin: 1rem;
+	margin-bottom: 0;
+	border-radius: 2rem;
+	padding: .9rem 2.5rem;
+}
 
 
 

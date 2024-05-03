@@ -1,13 +1,13 @@
 <?php
 	include "../connection.php";
-	$sql = mysqli_query($con, "SELECT * FROM macetas");
-	session_start();
-	if(!isset($_SESSION['id_owner'])){
-		$msg = "No se ha iniciado sesión";
-		header("refresh:1; url=../html/login.html");
-		echo '<div>'.$msg.'</div>';
-		echo '<p>Serás redirigido al log in en 5 segundos.</p>';
-	// header("Location: products.php");
-	exit;
-	}
+
+	if(isset($_GET['sku'])){
+        $sku = $_GET['sku'];
+        $sql = mysqli_query($con, "DELETE FROM macetas WHERE sku = '$sku'");
+        if($sql){
+            header("refresh:0.5; url=admin.php");
+        }
+    }else{
+        echo "No se ha seleccionado un producto";
+    }
 ?>

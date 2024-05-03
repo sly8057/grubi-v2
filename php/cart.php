@@ -65,10 +65,12 @@ if(isset($_SESSION['id_cliente'])){
 						<th class = "table">precio</th>
 						<th class = "table">cantidad</th>
 						<th class = "table">subtotal</th>
+						<th class = "table"></th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php
+						$total = 0;
 						if(isset($_SESSION['carrito'])) {
 							foreach ($_SESSION['carrito'] as $btn_sku => $maceta) {
 								echo "<tr>";
@@ -76,16 +78,31 @@ if(isset($_SESSION['id_cliente'])){
                                 echo "<td class = 'table'>$ {$maceta['precio']}</td>";
                                 echo "<td class = 'table'>{$maceta['cantidad']}</td>";
                                 echo "<td class = 'table'>$ {$maceta['subtotal']}</td>";
+                                echo "<td class = 'table'>";
+								echo "<button class = 'btn icon'><a href = 'editCart.php?act=add&sku={$btn_sku}' class = 'fas fa-plus'></a></button>";
+								echo "<button class = 'btn icon'><a href = 'editCart.php?act=substract&sku={$btn_sku}' class = 'fas fa-minus'></a></button>";
+								echo "<button class = 'btn delete'><a href = 'editCart.php?act=delete&sku={$btn_sku}' class = 'fas fa-trash'></a></button>";
+								echo "</td>";
 								echo "</tr>";
+								$total += $maceta['subtotal'];
 							}
 						} else {
 							echo "<tr><td colspan='5'>El carrito está vacío</td></tr>";
 						}
 					?>
 				</tbody>
+				<tfoot>
+					<tr>
+						<td></td>
+						<td></td>
+						<td>total</td>
+						<td>$ <?php echo $total; ?></td>
+						<td></td>
+					</tr>
+				</tfoot>
 			</table>
 		</div>
-		<button class="btn pdf"><a href="pdf.php" target="_blank" class="fas fa-file-pdf"></a></button>
+		<div class="btn pdf"><a href="pdf.php" target="_blank" class="fas fa-file-pdf"> pagar</a></div>
 	</section>
 <!-- carrito section end -->
 
