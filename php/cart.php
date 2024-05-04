@@ -102,7 +102,8 @@ if(isset($_SESSION['id_cliente'])){
 				</tfoot>
 			</table>
 		</div>
-		<div class="btn pdf"><a href="pdf.php" target="_blank" class="fas fa-file-pdf"> pagar</a></div>
+		<!-- <div class="btn pdf"><a href="pdf.php" target="_blank" class="fas fa-file-pdf"> pagar</a></div> -->
+		<div class="btn pdf"><a href="pdf.php" class="fas fa-file-pdf"> pagar</a></div>
 	</section>
 <!-- carrito section end -->
 

@@ -128,13 +128,13 @@
     $title = 'resumen de compra de ' .$rUsr['nombre'] . " ". Date("F_j_Y");
 
     //Output the document
-    $pdf->Output('I', $title . ".pdf");
-    // $pdf->Output('F', $title . ".pdf");
+    // $pdf->Output('I', $title . ".pdf");
+    $pdf->Output('F', $title . ".pdf");
 
     // Configuración email
     $to = $_SESSION['correo'];
-    // $from = 'no-reply@tenko.com';
-    $from = "tenko_grubimx@gmail.com";
+    // $from = 'no-reply@tenko.com]';
+    $from = "tenko_grubimex@gmail.com";
     $subject = $title;
     $msg = 'Se adjuntan los detalles de su compra en Grubi';
 
