@@ -1,7 +1,7 @@
 <?php
 	include "../connection.php";
-	$sql = mysqli_query($con, "SELECT * FROM macetas");
 	session_start();
+	$sql = mysqli_query($con, "SELECT * FROM macetas");
 	if(!isset($_SESSION['id_owner'])){
 		$msg = "No se ha iniciado sesión";
 		header("refresh:1; url=../html/login.html");
@@ -32,17 +32,18 @@
 		<label for="toggler" class="fas fa-bars"></label>
 
 		<!-- <a href="#" class="logo">Grub<span>i</span></a> -->
-		<a href="../index.php" class="logo"><img src="../img/decorations/grubi-logo.jpg" alt=""></a>
+		<a href="#" class="logo"><img src="../img/decorations/grubi-logo.jpg" alt=""></a>
 
 		<nav class="navbar">
 			<a href="../html/regproducts.html">Registrar</a>
-			<a href="#">Administrador</a>
+			<!-- <a href="#">Administrador</a> -->
 			<!-- <a href="delproducts.php">Eliminar</a> -->
 			<!-- <a href="modproducts.php">Modificar</a> -->
 		</nav>
 
 		<div class="icons">
-			<a href="#" class="fas fa-user"></a>
+			<a href="perfil.php" class="fas fa-user"></a>
+			<a href="logout.php" class="fas fa-right-from-bracket"></a>
 		</div>
 	</header>
 <!-- header section end -->

@@ -24,8 +24,8 @@
             header("refresh:1; url=products.php");
             echo '<div>'.$msg.'</div>';
             echo '<p>Serás redirigido a la página de productos en 5 segundos.</p>';
-        // header("Location: products.php");
-        exit;
+            // header("Location: products.php");
+            exit;
     } else if($nrAdm == 1) {
         $rAdm = mysqli_fetch_array($adm);
         $nombre = $rAdm['nombre'];
@@ -33,6 +33,7 @@
         header("refresh:1; url=admin.php");
         exit;
     } else if($nrUsr == 0 || $nrAdm == 0) {
+        header("refresh:1; url=../html/login.html");
         echo '<div> error al ingresar </div>';
     }
 ?>

@@ -48,7 +48,8 @@
 		</nav>
 
 		<div class="icons">
-			<a href="#" class="fas fa-user"></a>
+			<a href="perfil.php" class="fas fa-user"></a>
+			<a href="logout.php" class="fas fa-right-from-bracket"></a>
 		</div>
 	</header>
 <!-- header section end -->
@@ -59,7 +60,7 @@
 		<div class="container edit">
 			<form action="editProduct.php" method="post">
 				<h1 class = "edit">Maceta #<?php echo $row['sku']; ?></h1>
-					<input type="hidden" name="sku" placeholder="<?php echo $row['sku']; ?>" required>
+					<input type="hidden" name="sku" value="<?php echo $row['sku']; ?>">
 				<label>categoría</label>
 				<div class="input-box edit">
 					<input type="text"  name="categoria" placeholder="<?php echo $row['categoria']; ?>" required>
@@ -91,7 +92,7 @@
 					<i class="fas fa-image"></i>
 				</div>
 
-				<button type="submit" class="btn">Editar producto</button>
+				<input type="submit" class="btn" value="Editar producto">
 			</form>
 		</div>
 	</section>
@@ -100,11 +101,5 @@
 <?php
     }
 ?>
-
-<!-- footer section start -->
-<footer class="footer">
-		<div class="credit"> created by <span> sly </span> <br> &copy; 2024 Grubi by <span> Tenko </span> | todos los derechos reservados </div>
-	</footer>
-<!-- footer section end -->
 </body>
 </html>

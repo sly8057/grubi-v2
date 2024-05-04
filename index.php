@@ -7,6 +7,11 @@ if(isset($_SESSION['id_cliente'])){
 	$id_cliente = $_SESSION['id_cliente'];
 	$usr = mysqli_query($con,"SELECT nombre FROM clientes WHERE id_cliente = '$id_cliente'");
 }
+if(isset($_SESSION['id_owner'])){
+	$id_owner = $_SESSION['id_owner'];
+	$adm = mysqli_query($con,"SELECT nombre FROM propietarios WHERE id_owner = '$id_owner'");
+	header("refresh:1; url=php/admin.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
