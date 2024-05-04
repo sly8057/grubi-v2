@@ -42,7 +42,7 @@ if(isset($_SESSION['id_cliente'])){
 		<div class="icons">
 			<?php if(isset($_SESSION['id_cliente'])): ?>
 				<a href="#" class="fas fa-music"></a>
-				<a href="php/carrito.php" class="fas fa-shopping-cart"></a>
+				<a href="php/cart.php" class="fas fa-shopping-cart"></a>
 				<a href="php/perfil.php" class="fas fa-user"></a>
 				<a href="php/logout.php" class="fas fa-right-from-bracket"></a>
 				<?php endif; ?>

@@ -16,6 +16,8 @@
 	$usr = mysqli_query($con,"SELECT * FROM clientes WHERE id_cliente = '$id_cliente'");
 	$rUsr = mysqli_fetch_array($usr);
 
+    $_SESSION['correo'] = $rUsr['correo'];
+
     $prod = mysqli_query($con,"SELECT * FROM macetas WHERE modelo = 'Risk'");
     $rprod = mysqli_fetch_array($prod);
 
@@ -59,7 +61,7 @@
     $pdf->SetTextColor(131,164,102);
     $pdf->Cell(60,15, $rUsr['nombre'].' '.$rUsr['apellido']);
     $pdf->SetTextColor(0,0,0);
-    $pdf->Cell(60,15, $rUsr['correo']);
+    $pdf->Cell(60,15, $_SESSION['correo']);
     $pdf->SetXY(25,56);
 
     // Datos de la compra
@@ -116,13 +118,57 @@
         $pdf->Cell(0, 10, "El carrito se encuentra vacio en estos momentos", 0, 1);
     }
 
-
-
     //footer
     $pdf->SetXY($x+10,200);
     $pdf->Cell(0,5,'GRACIAS POR SU COMPRA',0,0,'C');
     $pdf->SetXY($x+10,205);
     $pdf->Image('../img/products/' .$rprod['imagen'],70,215,80,0,'PNG','');
+
+    // title of pdf
+    $title = 'resumen de compra de ' .$rUsr['nombre'] . " ". Date("F_j_Y");
+
     //Output the document
-    $pdf->Output('I',$rUsr['nombre'].".pdf");
+    $pdf->Output('I', $title . ".pdf");
+    // $pdf->Output('F', $title . ".pdf");
+
+    // Configuración email
+    $to = $_SESSION['correo'];
+    // $from = 'no-reply@tenko.com';
+    $from = "tenko_grubimx@gmail.com";
+    $subject = $title;
+    $msg = 'Se adjuntan los detalles de su compra en Grubi';
+
+    // archivos adjuntos
+    $file = $title . ".pdf";
+    $attachment = chunk_split(base64_encode(file_get_contents($file)));
+    $boundary = md5(date('r', time()));
+
+    // encabezado
+    $headers = "From: TENKO <$from>\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    // $headers .= "Return-path: $to\r\n";
+    $headers .= "Content-Type: multipart/mixed; boundary=\"$boundary\"\r\n";
+
+    // cuerpo del correo
+    $body = "--$boundary\r\n";
+    $body .= "Content-Type: text/plain; charset=ISO-8859-1\r\n";
+    $body .= "Content-Transfer-Encoding: base64\r\n";
+    $body .= "\r\n" . chunk_split(base64_encode($msg)) . "\r\n";
+
+    // adjuntar archivos
+    $body .= "--$boundary\r\n";
+    $body .= "Content-Type: application/pdf; name=\"$file\"\r\n";
+    $body .= "Content-Disposition: attachment; filename=\"$file\"\r\n";
+    $body .= "Content-Transfer-Encoding: base64\r\n";
+    $body .= "\r\n" . $attachment . "\r\n";
+    $body .= "--$boundary--";
+
+    // enviar correo
+    if (mail($to, $subject, $body, $headers)) {
+        header("Location: ../index.php");
+        $_SESSION['carrito'] = [];
+        //echo "<script>window.close();</script>";
+    } else {
+        echo "Email sending failed.";
+    }
 ?>
