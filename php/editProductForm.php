@@ -63,32 +63,32 @@
 					<input type="hidden" name="sku" value="<?php echo $row['sku']; ?>">
 				<label>categoría</label>
 				<div class="input-box edit">
-					<input type="text"  name="categoria" placeholder="<?php echo $row['categoria']; ?>" required>
+					<input type="text"  name="categoria" placeholder="<?php echo $row['categoria']; ?>">
 					<i class="fas fa-gears"></i>
 				</div>
 				<label>características</label>
 				<div class="input-box edit">
-					<input type="text"  name="caracteristicas" placeholder="<?php echo $row['caracteristicas']; ?>" required>
+					<input type="text"  name="caracteristicas" placeholder="<?php echo $row['caracteristicas']; ?>">
 					<i class="fas fa-note-sticky"></i>
 				</div>
 				<label>precio</label>
 				<div class="input-box edit">
-					<input type="text"  name="precio" placeholder="<?php echo $row['precio']; ?>" required>
+					<input type="text"  name="precio" placeholder="<?php echo $row['precio']; ?>">
 					<i class="fas fa-money-bill"></i>
 				</div>
 				<label>unidades</label>
 				<div class="input-box edit">
-					<input type="number"  name="unidades" placeholder="<?php echo $row['unidades']; ?>" required>
+					<input type="number"  name="unidades" placeholder="<?php echo $row['unidades']; ?>">
 					<i class="fas fa-hashtag"></i>
 				</div>
 				<label>modelo</label>
 				<div class="input-box edit">
-					<input type="text"  name="modelo" placeholder="<?php echo $row['modelo']; ?>" required>
+					<input type="text"  name="modelo" placeholder="<?php echo $row['modelo']; ?>">
 					<i class="fas fa-pen-to-square"></i>
 				</div>
 				<label>imagen</label>
 				<div class="input-box edit">
-					<input type="text"  name="imagen" placeholder="<?php echo $row['imagen']; ?>" required>
+					<input type="text"  name="imagen" placeholder="<?php echo $row['imagen']; ?>">
 					<i class="fas fa-image"></i>
 				</div>
 

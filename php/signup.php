@@ -13,6 +13,7 @@
         header("Location: ../index.php");
         exit;
     } else {
+        session_destroy();
         echo " -> error al registrar";
     }
 ?>

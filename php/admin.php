@@ -4,6 +4,7 @@
 	$sql = mysqli_query($con, "SELECT * FROM macetas");
 	if(!isset($_SESSION['id_owner'])){
 		$msg = "No se ha iniciado sesión";
+		session_destroy();
 		header("refresh:1; url=../html/login.html");
 		echo '<div>'.$msg.'</div>';
 		echo '<p>Serás redirigido al log in en 5 segundos.</p>';
@@ -54,6 +55,23 @@
 <!-- products section start -->
 	<section class="products catalogue">
 		<h1 class="heading"> catálogo de <span> productos </span></h1>
+		<div class="searchbar">
+			<form action="" method="get" class="searchbar">
+				<input type="text" name="search" placeholder="<?php if(isset($_SESSION['search'])) echo $_SESSION['search'];?>">
+				<button type="submit" name="send" class="fas fa-search"></button>
+				<!-- <button type="submit" name="send" class="btn" class="fas fa-search"></button> -->
+			</form>
+			<?php
+				if(isset($_GET['send'])) {
+					$search = $_GET['search'];
+					$_SESSION['search'] = $search;
+
+					$sql = mysqli_query($con, "SELECT * FROM macetas WHERE sku LIKE '%$search%' OR categoria LIKE '%$search%' OR modelo LIKE '%$search%' OR caracteristicas LIKE '%$search%' OR precio LIKE '%$search%'");
+
+					header("refresh=1; url=admin.php");
+				}
+			?>
+		</div>
 		<div class="admin products">
 			<table class="table">
 				<thead>

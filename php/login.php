@@ -33,6 +33,7 @@
         header("refresh:1; url=admin.php");
         exit;
     } else if($nrUsr == 0 || $nrAdm == 0) {
+        session_destroy();
         header("refresh:1; url=../html/login.html");
         echo '<div> error al ingresar </div>';
     }

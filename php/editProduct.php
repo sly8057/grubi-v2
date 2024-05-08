@@ -2,54 +2,49 @@
 	include "../connection.php";
 	session_start();
 
-	if($_SERVER["REQUEST_METHOD"] == "POST") {
-		$sku = $_POST['sku'];
-		$categoria = $_POST['categoria'];
-		$caracteristicas = $_POST['caracteristicas'];
-		$precio = $_POST['precio'];
-		$unidades = $_POST['unidades'];
-		$modelo = $_POST['modelo'];
-		$imagen = $_POST['imagen'];
+	$sku = $_POST['sku'];
+	$categoria = $_POST['categoria'];
+	$caracteristicas = $_POST['caracteristicas'];
+	$precio = $_POST['precio'];
+	$unidades = $_POST['unidades'];
+	$modelo = $_POST['modelo'];
+	$imagen = $_POST['imagen'];
 
-		$orig = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM macetas WHERE sku = '$sku'"));
-		// $orig = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM macetas WHERE sku = '$sku'"));
+	$sql = mysqli_query($con, "SELECT * FROM macetas WHERE sku = '$sku'");
 
-		$changes = 0;
+	if($sql && mysqli_num_rows($sql) > 0) {
+		$orig = mysqli_fetch_array($sql);
 
-		if($categoria != $orig['categoria']) {
-			$changes++;
+		if($categoria == '') {
+			$categoria = $orig['categoria'];
 		}
 
-		if($modelo != $orig['modelo']) {
-			$changes++;
+		if($caracteristicas == '') {
+			$caracteristicas = $orig['caracteristicas'];
 		}
 
-		if($caracteristicas != $orig['caracteristicas']) {
-			$changes++;
+		if($precio == '') {
+			$precio = $orig['precio'];
 		}
 
-		if($precio != $orig['precio']) {
-			$changes++;
+		if($unidades == '') {
+			$unidades = $orig['unidades'];
 		}
 
-		if($unidades != $orig['unidades']) {
-			$changes++;
+		if($modelo == '') {
+			$modelo = $orig['modelo'];
 		}
 
-		if($imagen != $orig['imagen']) {
-			$changes++;
+		if($imagen == '') {
+			$imagen = $orig['imagen'];
 		}
 
-		if($changes > 1) {
-			echo "Advertencia: Solo se puede modificar un campo a la vez.";
+		$sql = mysqli_query($con, "UPDATE macetas SET categoria = '$categoria', modelo = '$modelo', caracteristicas = '$caracteristicas', precio = '$precio', unidades = '$unidades', imagen = '$imagen' WHERE sku = '$sku'");
+
+		if($sql) {
+			header("refresh:1; url=admin.php");
 		} else {
-			$sql = mysqli_query($con, "UPDATE macetas SET categoria = '$categoria', modelo = '$modelo', caracteristicas = '$caracteristicas', precio = '$precio', unidades = '$unidades', imagen = '$imagen' WHERE sku = '$sku'");
-
-			if($sql) {
-				header("Location: admin.php");
-			} else {
-				echo "No se ha seleccionado un producto";
-			}
+			echo "No se ha seleccionado un producto para modificar";
 		}
 	}
 ?>

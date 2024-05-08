@@ -7,6 +7,8 @@ if(isset($_SESSION['id_cliente'])){
 	$id_cliente = $_SESSION['id_cliente'];
 	$usr = mysqli_query($con,"SELECT nombre FROM clientes WHERE id_cliente = '$id_cliente'");
 }
+
+header("refresh:1; url=cart.php");
 ?>
 
 <!DOCTYPE html>

@@ -7,6 +7,8 @@ if(isset($_SESSION['id_cliente'])){
 	$id_cliente = $_SESSION['id_cliente'];
 	$usr = mysqli_query($con,"SELECT nombre FROM clientes WHERE id_cliente = '$id_cliente'");
 }
+
+// header("refresh:1; url=products.php");
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +71,8 @@ if(isset($_SESSION['id_cliente'])){
 			<div class="box">
 				<div class="image">
 					<img src="../img/products/<?php echo $row['imagen']?>" alt="">
-					<form action="addToCart.php" method="post">
+					<!-- <form action="addToCart.php" method="post"> -->
+					<form action=<?php if(isset($_SESSION['id_cliente'])) echo "addToCart.php"; else echo "../html/login.html";?> method="post">
 						<div class="icons">
 							<a href="#" class="fas fa-heart"></a>
 							<!-- <input type="number" value="1" name="cantidad"> -->
@@ -94,16 +97,33 @@ if(isset($_SESSION['id_cliente'])){
 <!-- products section start -->
 	<section class="products catalogue">
 		<h1 class="heading"> catálogo de <span> productos </span></h1>
-		<div class="box-container">
-		<?php
+		<div class="searchbar">
+			<form action="" method="get" class="searchbar">
+				<input type="text" name="search" placeholder="<?php if(isset($_SESSION['search'])) echo $_SESSION['search'];?>">
+				<button type="submit" name="send" class="fas fa-search"></button>
+				<!-- <button type="submit" name="send" class="btn" class="fas fa-search"></button> -->
+			</form>
+			<?php
 				include("../connection.php");
 				$q = mysqli_query($con, "SELECT * FROM macetas");
+				if(isset($_GET['send'])) {
+					$search = $_GET['search'];
+					$_SESSION['search'] = $search;
+
+					$q = mysqli_query($con, "SELECT * FROM macetas WHERE sku LIKE '%$search%' OR categoria LIKE '%$search%' OR modelo LIKE '%$search%' OR caracteristicas LIKE '%$search%' OR precio LIKE '%$search%'");
+
+					header("refresh=1; url=products.php");
+				}
+			?>
+		</div>
+		<div class="box-container">
+			<?php
 				while($row = mysqli_fetch_array($q)){
-		?>
+			?>
 			<div class="box">
 				<div class="image">
 					<img src="../img/products/<?php echo $row['imagen']?>" alt="">
-					<form action="addToCart.php" method="post">
+					<form action=<?php if(isset($_SESSION['id_cliente'])) echo "addToCart.php"; else echo "../html/login.html";?> method="post">
 						<div class="icons">
 							<a href="#" class="fas fa-heart"></a>
 							<input type="hidden" value="<?php echo $row['sku']; ?>" name="sku">

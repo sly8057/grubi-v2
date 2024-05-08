@@ -37,8 +37,8 @@
             default:
                 break;
         }
-    }
 
-    header("Location: cart.php");
-    exit;
+        header("Location: cart.php");
+        exit;
+    }
 ?>
