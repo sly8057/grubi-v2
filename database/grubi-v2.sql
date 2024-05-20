@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-04-2024 a las 22:58:02
+-- Tiempo de generación: 20-05-2024 a las 04:35:37
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -42,10 +42,12 @@ CREATE TABLE `clientes` (
 
 INSERT INTO `clientes` (`id_cliente`, `nombre`, `apellido`, `correo`, `contra`, `img`) VALUES
 (1, 'Jesus', 'Rostro', 'jesusrostrocontacto@gmail.com', 'HD82d@xd', ''),
+(2, 'Estefania', 'Salazar', 'gamago.net@gmail.com', '8057', ''),
 (5, 'dgksfd', 'skahgadfgl', 'dgfdfl@gsdsjkf.com', '15461fhjf', ''),
 (6, 'dfhdhhghfghg', 'jgkhlwery57493hwe', 'correo@gmail.com', 'contraseña123', ''),
 (7, 'fjhfhafh', 'djkas', 'fkfjah@fhdklf.com', '225516', ''),
-(9, 'brenda', 'dfalhfal', 'cliente@gmail.com', '1352', '');
+(9, 'brenda', 'dfalhfal', 'cliente@gmail.com', '1352', ''),
+(10, 'Rosa', 'Santana', 'rsantana@ceti.mx', '1234', '');
 
 -- --------------------------------------------------------
 
@@ -83,7 +85,8 @@ CREATE TABLE `macetas` (
 --
 
 INSERT INTO `macetas` (`sku`, `categoria`, `modelo`, `caracteristicas`, `precio`, `unidades`, `imagen`) VALUES
-(1154, 'Deluxe', 'Cyrus', '15cm de ancho x 30cm de alto', 60, 9, 'cyrus.webp'),
+(123, 'Deluxe', 'prueba', '10cm de ancho x 5cm de alto', 30.4, 4, ''),
+(1154, 'Deluxe', 'Cyrus', '15cm de ancho x 30cm de alto', 60, 8, 'cyrus.webp'),
 (43132, 'Estándar', 'Risk', '15cm de ancho x 15cm de alto', 50.4, 15, 'risk.png');
 
 -- --------------------------------------------------------
@@ -252,7 +255,7 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id_cliente` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_cliente` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `descuentos`
