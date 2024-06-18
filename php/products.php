@@ -30,7 +30,6 @@ if(isset($_SESSION['id_cliente'])){
 		<input type="checkbox" id="toggler">
 		<label for="toggler" class="fas fa-bars"></label>
 
-		<!-- <a href="#" class="logo">Grub<span>i</span></a> -->
 		<a href="../index.php" class="logo"><img src="../img/decorations/grubi-logo.jpg" alt=""></a>
 
 		<nav class="navbar">
@@ -61,7 +60,6 @@ if(isset($_SESSION['id_cliente'])){
 		<h1 class="heading"> <span> compra </span> antes de que se <span> acaben </span></h1>
 		<p>Hemos creado tu nueva maceta inteligente, la cual te acompañará todos los días con tu música favorita.</p>
 		<div class="box-container">
-			<!-- El box-container debe ser display:flex, flex-wrap:wrap, gap:1.5rem -->
 			<?php
 				include("../connection.php");
 				$sql = mysqli_query($con,"SELECT * FROM macetas WHERE unidades <= '10'");
@@ -144,16 +142,6 @@ if(isset($_SESSION['id_cliente'])){
 		</div>
 	</section>
 <!-- products section start -->
-
-<?php
-	// if(isset($_REQUEST["agregar"])){
-	// 	$sku = $_REQUEST["sku"];
-	// 	$precio = $_REQUEST["precio"];
-
-	// 	$_SESSION['carrito'][$sku]['cantidad'] = 1;
-	// 	$_SESSION['carrito'][$sku]['precio'] = $precio;
-	// }
-?>
 
 <!-- footer section start -->
 	<footer class="footer">

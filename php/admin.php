@@ -37,7 +37,7 @@
 
 		<nav class="navbar">
 			<a href="../html/regproducts.html">Registrar</a>
-			<!-- <a href="#">Administrador</a> -->
+			<a href="bitacora.php">Bitácora</a>
 			<!-- <a href="delproducts.php">Eliminar</a> -->
 			<!-- <a href="modproducts.php">Modificar</a> -->
 		</nav>

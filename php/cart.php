@@ -45,7 +45,7 @@ header("refresh:1; url=cart.php");
 		<div class="icons">
 			<?php if(isset($_SESSION['id_cliente'])): ?>
 				<a href="#" class="fas fa-music"></a>
-				<a href="cart.php" class="fas fa-shopping-cart"></a>
+				<a href="carrito.php" class="fas fa-shopping-cart"></a>
 				<a href="perfil.php" class="fas fa-user"></a>
 				<a href="logout.php" class="fas fa-right-from-bracket"></a>
 				<?php endif; ?>
@@ -105,7 +105,7 @@ header("refresh:1; url=cart.php");
 			</table>
 		</div>
 		<!-- <div class="btn pdf"><a href="pdf.php" target="_blank" class="fas fa-file-pdf"> pagar</a></div> -->
-		<div class="btn pdf"><a href="pdf.php" class="fas fa-file-pdf"> pagar </a></div>
+		<div class="btn pdf"><a href="pdf.php" class="fas fa-file-pdf"> pagar</a></div>
 	</section>
 <!-- carrito section end -->
 
