@@ -1,7 +1,7 @@
 <?php
 	include "../connection.php";
 	session_start();
-	$sql = mysqli_query($con, "SELECT * FROM bitacora");
+	$sql = mysqli_query($con, 'SELECT * FROM bitacora');
 	if(!isset($_SESSION['id_owner'])){
 		$msg = "No se ha iniciado sesión";
 		session_destroy();
@@ -9,8 +9,59 @@
 		echo '<div>'.$msg.'</div>';
 		echo '<p>Serás redirigido al log in en 5 segundos.</p>';
 	// header("Location: products.php");
-	exit;
+		exit;
 	}
+
+	$query = 'DROP TRIGGER IF EXISTS after_insert_macetas;'.
+			'CREATE TRIGGER after_insert_macetas
+			AFTER INSERT ON `macetas`
+			FOR EACH ROW
+			BEGIN
+				insert into `bitacora` ( fecha, accion, user, executedSQL, reverseSQL )
+				values(
+					now(),
+					"insert",
+					CURRENT_USER(),
+					CONCAT("INSERT INTO macetas (sku, categoria, modelo, caracteristicas, precio, unidades, imagen) VALUES (",NEW.sku,", """,NEW.categoria,""", """,NEW.modelo,""", """,NEW.caracteristicas,""", ",NEW.precio,", ",NEW.unidades,", """,NEW.imagen,""");"),
+					CONCAT("DELETE FROM macetas WHERE sku = ",NEW.sku,";")
+				);
+			END;'.
+
+			'DROP TRIGGER IF EXISTS after_delete_macetas;'.
+			'CREATE TRIGGER after_delete_macetas
+			AFTER DELETE ON macetas
+			FOR EACH ROW
+			BEGIN
+				insert into bitacora ( fecha, accion, user, executedSQL, reverseSQL )
+				values(
+					now(),
+					"delete",
+					CURRENT_USER(),
+					CONCAT("DELETE FROM macetas WHERE sku = ",OLD.sku,";"),
+					CONCAT("INSERT INTO macetas (sku, categoria, modelo, caracteristicas, precio, unidades, imagen) VALUES (",OLD.sku,", """,OLD.categoria,""", """,OLD.modelo,""", """,OLD.caracteristicas,""", ",OLD.precio,", ",OLD.unidades,", """,OLD.imagen,""");")
+				);
+			END;'.
+
+			'DROP TRIGGER IF EXISTS after_update_macetas;'.
+			'CREATE TRIGGER after_update_macetas
+			AFTER UPDATE ON macetas
+			FOR EACH ROW
+			BEGIN
+				insert into bitacora ( fecha, accion, user, executedSQL, reverseSQL )
+				values(
+					now(),
+					"update",
+					CURRENT_USER(),
+					CONCAT("INSERT INTO macetas (sku, categoria, modelo, caracteristicas, precio, unidades, imagen) VALUES (",NEW.sku,", """,NEW.categoria,""", """,NEW.modelo,""", """,NEW.caracteristicas,""", ",NEW.precio,", ",NEW.unidades,", """,NEW.imagen,""");"),
+					CONCAT("INSERT INTO macetas (sku, categoria, modelo, caracteristicas, precio, unidades, imagen) VALUES (",OLD.sku,", """,OLD.categoria,""", """,OLD.modelo,""", """,OLD.caracteristicas,""", ",OLD.precio,", ",OLD.unidades,", """,OLD.imagen,""");")
+				);
+			END;';
+
+	mysqli_multi_query($con, $query);
+	while ($con->next_result()) // flush multi_queries
+    {
+        if (!$con->more_results()) break;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +88,7 @@
 
 		<nav class="navbar">
 			<a href="admin.php">Volver</a>
+			<a href="users.php">Clientes</a>
 			<!-- <a href="#">Administrador</a> -->
 			<!-- <a href="delproducts.php">Eliminar</a> -->
 			<!-- <a href="modproducts.php">Modificar</a> -->
