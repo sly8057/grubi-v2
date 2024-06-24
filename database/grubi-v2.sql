@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-05-2024 a las 04:35:37
+-- Tiempo de generación: 24-06-2024 a las 15:27:56
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `grubi-v2`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `bitacora`
+--
+
+CREATE TABLE `bitacora` (
+  `idBitacora` int(11) NOT NULL,
+  `accion` varchar(255) NOT NULL,
+  `user` varchar(255) NOT NULL,
+  `fecha` datetime DEFAULT NULL,
+  `executedSQL` varchar(2000) DEFAULT NULL,
+  `reverseSQL` varchar(2000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `bitacora`
+--
+
+INSERT INTO `bitacora` (`idBitacora`, `accion`, `user`, `fecha`, `executedSQL`, `reverseSQL`) VALUES
+(1, 'update', 'root@localhost', '2024-06-19 11:27:17', 'INSERT INTO macetas (sku, categoria, modelo, caracteristicas, precio, unidades, imagen) VALUES (159, \"Estandar\", \"fgakj\", \"hsdfgkjdg\", 15, 213, \"risk.png\");', 'INSERT INTO macetas (sku, categoria, modelo, caracteristicas, precio, unidades, imagen) VALUES (159, \"Estandar\", \"fgakj\", \"hsdfgkjdg\", 560, 213, \"risk.png\");'),
+(2, 'delete', 'root@localhost', '2024-06-19 16:38:11', 'DELETE FROM macetas WHERE sku = 159;', 'INSERT INTO macetas (sku, categoria, modelo, caracteristicas, precio, unidades, imagen) VALUES (159, \"Estandar\", \"fgakj\", \"hsdfgkjdg\", 15, 213, \"risk.png\");');
 
 -- --------------------------------------------------------
 
@@ -41,28 +64,14 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id_cliente`, `nombre`, `apellido`, `correo`, `contra`, `img`) VALUES
-(1, 'Jesus', 'Rostro', 'jesusrostrocontacto@gmail.com', 'HD82d@xd', ''),
+(1, 'Jesus', 'Rostro', 'jesusrostrocontacto@gmail.com', 'HD82d@xd', 'noelle.webp'),
 (2, 'Estefania', 'Salazar', 'gamago.net@gmail.com', '8057', ''),
 (5, 'dgksfd', 'skahgadfgl', 'dgfdfl@gsdsjkf.com', '15461fhjf', ''),
 (6, 'dfhdhhghfghg', 'jgkhlwery57493hwe', 'correo@gmail.com', 'contraseña123', ''),
 (7, 'fjhfhafh', 'djkas', 'fkfjah@fhdklf.com', '225516', ''),
 (9, 'brenda', 'dfalhfal', 'cliente@gmail.com', '1352', ''),
-(10, 'Rosa', 'Santana', 'rsantana@ceti.mx', '1234', '');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `descuentos`
---
-
-CREATE TABLE `descuentos` (
-  `id_descuento` int(50) NOT NULL,
-  `id_venta` int(50) NOT NULL,
-  `articulo` varchar(255) NOT NULL,
-  `tipo` varchar(255) NOT NULL,
-  `porcentaje` float(10,4) NOT NULL,
-  `descuento` float(10,4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(10, 'Rosa', 'Santana', 'rsantana@ceti.mx', '1234', ''),
+(11, 'diego', 'muñoz', 'diego@hotmail.com', '555', '');
 
 -- --------------------------------------------------------
 
@@ -85,69 +94,52 @@ CREATE TABLE `macetas` (
 --
 
 INSERT INTO `macetas` (`sku`, `categoria`, `modelo`, `caracteristicas`, `precio`, `unidades`, `imagen`) VALUES
-(123, 'Deluxe', 'prueba', '10cm de ancho x 5cm de alto', 30.4, 4, ''),
+(123, 'Deluxe', 'prueba', '10cm de ancho x 5cm de alto', 30.4, 4, 'noelle.webp'),
 (1154, 'Deluxe', 'Cyrus', '15cm de ancho x 30cm de alto', 60, 8, 'cyrus.webp'),
 (43132, 'Estándar', 'Risk', '15cm de ancho x 15cm de alto', 50.4, 15, 'risk.png');
 
--- --------------------------------------------------------
-
 --
--- Estructura de tabla para la tabla `musica`
+-- Disparadores `macetas`
 --
-
-CREATE TABLE `musica` (
-  `id_cancion` int(50) NOT NULL,
-  `id_cliente` int(50) NOT NULL,
-  `cancion` varchar(255) NOT NULL,
-  `artista` varchar(255) NOT NULL,
-  `plataforma` varchar(255) NOT NULL,
-  `disponible` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `pagos`
---
-
-CREATE TABLE `pagos` (
-  `id_pago` int(50) NOT NULL,
-  `id_venta` int(50) NOT NULL,
-  `titular` varchar(255) NOT NULL,
-  `fecha` varchar(255) NOT NULL,
-  `numTarjeta` varchar(255) NOT NULL,
-  `total` float(10,4) NOT NULL,
-  `validacion` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `personalizado`
---
-
-CREATE TABLE `personalizado` (
-  `id_custom` int(50) NOT NULL,
-  `id_planta` int(50) NOT NULL,
-  `modelo` varchar(255) NOT NULL,
-  `color` varchar(255) NOT NULL,
-  `msg` varchar(255) NOT NULL,
-  `planta` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `plantas`
---
-
-CREATE TABLE `plantas` (
-  `id_planta` int(50) NOT NULL,
-  `proveedor` varchar(255) NOT NULL,
-  `tipoPlanta` varchar(255) NOT NULL,
-  `cantidad` int(50) NOT NULL,
-  `costo` float(10,4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+DELIMITER $$
+CREATE TRIGGER `after_delete_macetas` AFTER DELETE ON `macetas` FOR EACH ROW BEGIN
+				insert into bitacora ( fecha, accion, user, executedSQL, reverseSQL )
+				values(
+					now(),
+					"delete",
+					CURRENT_USER(),
+					CONCAT("DELETE FROM macetas WHERE sku = ",OLD.sku,";"),
+					CONCAT("INSERT INTO macetas (sku, categoria, modelo, caracteristicas, precio, unidades, imagen) VALUES (",OLD.sku,", """,OLD.categoria,""", """,OLD.modelo,""", """,OLD.caracteristicas,""", ",OLD.precio,", ",OLD.unidades,", """,OLD.imagen,""");")
+				);
+			END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `after_insert_macetas` AFTER INSERT ON `macetas` FOR EACH ROW BEGIN
+				insert into `bitacora` ( fecha, accion, user, executedSQL, reverseSQL )
+				values(
+					now(),
+					"insert",
+					CURRENT_USER(),
+					CONCAT("INSERT INTO macetas (sku, categoria, modelo, caracteristicas, precio, unidades, imagen) VALUES (",NEW.sku,", """,NEW.categoria,""", """,NEW.modelo,""", """,NEW.caracteristicas,""", ",NEW.precio,", ",NEW.unidades,", """,NEW.imagen,""");"),
+					CONCAT("DELETE FROM macetas WHERE sku = ",NEW.sku,";")
+				);
+			END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `after_update_macetas` AFTER UPDATE ON `macetas` FOR EACH ROW BEGIN
+				insert into bitacora ( fecha, accion, user, executedSQL, reverseSQL )
+				values(
+					now(),
+					"update",
+					CURRENT_USER(),
+					CONCAT("INSERT INTO macetas (sku, categoria, modelo, caracteristicas, precio, unidades, imagen) VALUES (",NEW.sku,", """,NEW.categoria,""", """,NEW.modelo,""", """,NEW.caracteristicas,""", ",NEW.precio,", ",NEW.unidades,", """,NEW.imagen,""");"),
+					CONCAT("INSERT INTO macetas (sku, categoria, modelo, caracteristicas, precio, unidades, imagen) VALUES (",OLD.sku,", """,OLD.categoria,""", """,OLD.modelo,""", """,OLD.caracteristicas,""", ",OLD.precio,", ",OLD.unidades,", """,OLD.imagen,""");")
+				);
+			END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -172,26 +164,15 @@ INSERT INTO `propietarios` (`id_owner`, `nombre`, `apellido`, `correo`, `contra`
 (1, 'daniela', 'hernandez vendramini', 'herven@gmail.com', '12345', ''),
 (2, 'brenda', 'carrazco angulo', 'carang@gmail.com', 'f124', '');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ventas`
---
-
-CREATE TABLE `ventas` (
-  `id_venta` int(50) NOT NULL,
-  `id_descuento` int(50) NOT NULL,
-  `id_cliente` int(50) NOT NULL,
-  `id_custom` int(50) NOT NULL,
-  `precio` float(10,4) NOT NULL,
-  `total` float(10,4) NOT NULL,
-  `articulo` varchar(255) NOT NULL,
-  `validacion` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `bitacora`
+--
+ALTER TABLE `bitacora`
+  ADD PRIMARY KEY (`idBitacora`);
 
 --
 -- Indices de la tabla `clientes`
@@ -200,40 +181,10 @@ ALTER TABLE `clientes`
   ADD PRIMARY KEY (`id_cliente`);
 
 --
--- Indices de la tabla `descuentos`
---
-ALTER TABLE `descuentos`
-  ADD PRIMARY KEY (`id_descuento`);
-
---
 -- Indices de la tabla `macetas`
 --
 ALTER TABLE `macetas`
   ADD PRIMARY KEY (`sku`);
-
---
--- Indices de la tabla `musica`
---
-ALTER TABLE `musica`
-  ADD PRIMARY KEY (`id_cancion`);
-
---
--- Indices de la tabla `pagos`
---
-ALTER TABLE `pagos`
-  ADD PRIMARY KEY (`id_pago`);
-
---
--- Indices de la tabla `personalizado`
---
-ALTER TABLE `personalizado`
-  ADD PRIMARY KEY (`id_custom`);
-
---
--- Indices de la tabla `plantas`
---
-ALTER TABLE `plantas`
-  ADD PRIMARY KEY (`id_planta`);
 
 --
 -- Indices de la tabla `propietarios`
@@ -242,62 +193,26 @@ ALTER TABLE `propietarios`
   ADD PRIMARY KEY (`id_owner`);
 
 --
--- Indices de la tabla `ventas`
---
-ALTER TABLE `ventas`
-  ADD PRIMARY KEY (`id_venta`);
-
---
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `bitacora`
+--
+ALTER TABLE `bitacora`
+  MODIFY `idBitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id_cliente` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT de la tabla `descuentos`
---
-ALTER TABLE `descuentos`
-  MODIFY `id_descuento` int(50) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `musica`
---
-ALTER TABLE `musica`
-  MODIFY `id_cancion` int(50) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `pagos`
---
-ALTER TABLE `pagos`
-  MODIFY `id_pago` int(50) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `personalizado`
---
-ALTER TABLE `personalizado`
-  MODIFY `id_custom` int(50) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `plantas`
---
-ALTER TABLE `plantas`
-  MODIFY `id_planta` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cliente` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `propietarios`
 --
 ALTER TABLE `propietarios`
   MODIFY `id_owner` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `ventas`
---
-ALTER TABLE `ventas`
-  MODIFY `id_venta` int(50) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
