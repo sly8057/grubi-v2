@@ -164,6 +164,7 @@ if(isset($_SESSION['id_owner'])){
 				<img src="img/decorations/payments.png" alt="">
 			</div>
 		</div>
+		<div class="credit"> esta es una pagina con fines meramente <span> académicos </span> | nada de lo que se ve aquí es real </div>
 		<div class="credit"> created by <span> sly </span> <br> &copy; 2024 Grubi by <span> Tenko </span> | todos los derechos reservados </div>
 	</footer>
 <!-- footer section end -->
